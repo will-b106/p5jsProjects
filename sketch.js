@@ -54,6 +54,8 @@ function draw() {
           if (withinCols(col) && withinRows(row)) {
             grid[col][row] = hueValue;
             velocityGrid[col][row] = 1;
+            sandCount++;
+            checkThreshold();
           }
         }
       }
@@ -72,19 +74,9 @@ function draw() {
         let x = i * w;
         let y = j * w;
         square(x, y, w);
-        sandCount++;
-        checkThreshold();
+        //sandCount++;
+        //checkThreshold();
       }
-    }
-  }
-
-  function checkThreshold() {
-    let totalPixels = canvasWidth * canvasHeight;
-    let occupiedPercentage = (sandCount / totalPixels) * 100;
-    if (occupiedPercentage >= thresholdPercentage) {
-      // Prevent further addition of sand
-      noLoop(); // Stop draw loop
-      console.log("Canvas filled with sand. Stop adding sand.");
     }
   }
 
@@ -138,4 +130,14 @@ function draw() {
   }
   grid = nextGrid;
   velocityGrid = nextVelocityGrid;
+
+  function checkThreshold() {
+    let totalPixels = 600 * 500;
+    let occupiedPercentage = (sandCount / totalPixels) * 100;
+    if (occupiedPercentage >= thresholdPercentage) {
+      // Prevent further addition of sand
+      noLoop(); // Stop draw loop
+      console.log("Canvas filled with sand. Stop adding sand.");
+    }
+  } 
 }
