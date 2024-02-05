@@ -16,8 +16,7 @@ let w = 5;
 let cols, rows;
 let hueValue = 200;
 let gravity = 0.1;
-let sandCount = 0;
-const thresholdPercentage = 100;
+const totalPixels = 600 * 500;
 
 function withinCols(i) {
   return i >= 0 && i <= cols - 1;
@@ -40,6 +39,7 @@ function mouseDragged() {}
 
 function draw() {
   background(0);
+  sandCount = 0;
   if (mouseIsPressed) {
     let mouseCol = floor(mouseX / w);
     let mouseRow = floor(mouseY / w);
@@ -54,8 +54,6 @@ function draw() {
           if (withinCols(col) && withinRows(row)) {
             grid[col][row] = hueValue;
             velocityGrid[col][row] = 1;
-            sandCount++;
-            checkThreshold();
           }
         }
       }
@@ -74,8 +72,6 @@ function draw() {
         let x = i * w;
         let y = j * w;
         square(x, y, w);
-        //sandCount++;
-        //checkThreshold();
       }
     }
   }
@@ -130,14 +126,4 @@ function draw() {
   }
   grid = nextGrid;
   velocityGrid = nextVelocityGrid;
-
-  function checkThreshold() {
-    let totalPixels = 600 * 500;
-    let occupiedPercentage = (sandCount / totalPixels) * 100;
-    if (occupiedPercentage >= thresholdPercentage) {
-      // Prevent further addition of sand
-      noLoop(); // Stop draw loop
-      console.log("Canvas filled with sand. Stop adding sand.");
-    }
-  } 
 }
