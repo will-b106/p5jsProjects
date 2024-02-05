@@ -16,7 +16,7 @@ let w = 5;
 let cols, rows;
 let hueValue = 200;
 let gravity = 0.1;
-const totalPixels = 600 * 500;
+const totalPixels = 900 * 800;
 
 function withinCols(i) {
   return i >= 0 && i <= cols - 1;
@@ -27,7 +27,7 @@ function withinRows(j) {
 }
 
 function setup() {
-  createCanvas(600, 500);
+  createCanvas(900, 800);
   colorMode(HSB, 360, 255, 255);
   cols = width / w;
   rows = height / w;
@@ -69,10 +69,10 @@ function draw() {
       noStroke();
       if (grid[i][j] > 0) {
         //fill(grid[i][j], 255, 255);
-        //let posYPercentage = map(j, 0, rows, -1, 0 ,1);
-        //let sandColor = lerpColor(color(255, 0, 0), color(0, 255, 0), posYPercentage);
         let sandColor = map(j, 0, rows - 1, 0, 255);
         fill(grid[i][j], sandColor);
+        
+        //console.log(sandColor);
 
         let x = i * w;
         let y = j * w;
