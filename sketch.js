@@ -66,14 +66,19 @@ function draw() {
 
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
+      // Calculate the interpolation factor based on the position in the grid
+      let interpFactor = map(j, 0, rows - 1, 0, 1);
+      // Interpolate between brown and nude using the interpolation factor
+      let r = lerp(153, 255, interpFactor);
+      let g = lerp(76, 255, interpFactor);
+      let b = lerp(0, 204, interpFactor);
+      let sandColor = color(r, g, b);
+
       noStroke();
       if (grid[i][j] > 0) {
         //fill(grid[i][j], 255, 255);
-        let sandColor = map(j, 0, rows - 1, 0, 255);
-        fill(grid[i][j], sandColor);
-        
+        fill(sandColor);
         //console.log(sandColor);
-
         let x = i * w;
         let y = j * w;
         square(x, y, w);
