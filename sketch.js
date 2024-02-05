@@ -39,7 +39,6 @@ function mouseDragged() {}
 
 function draw() {
   background(0);
-  sandCount = 0;
   if (mouseIsPressed) {
     let mouseCol = floor(mouseX / w);
     let mouseRow = floor(mouseY / w);
@@ -51,7 +50,8 @@ function draw() {
         if (random(1) < 0.75) {
           let col = mouseCol + i;
           let row = mouseRow + j;
-          if (withinCols(col) && withinRows(row)) {
+          // stop from overwriting previous coloured pixels
+          if (withinCols(col) && withinRows(row) && grid[col][row] === 0) {  
             grid[col][row] = hueValue;
             velocityGrid[col][row] = 1;
           }
@@ -68,7 +68,12 @@ function draw() {
     for (let j = 0; j < rows; j++) {
       noStroke();
       if (grid[i][j] > 0) {
-        fill(grid[i][j], 255, 255);
+        //fill(grid[i][j], 255, 255);
+        //let posYPercentage = map(j, 0, rows, -1, 0 ,1);
+        //let sandColor = lerpColor(color(255, 0, 0), color(0, 255, 0), posYPercentage);
+        let sandColor = map(j, 0, rows - 1, 0, 255);
+        fill(grid[i][j], sandColor);
+
         let x = i * w;
         let y = j * w;
         square(x, y, w);
