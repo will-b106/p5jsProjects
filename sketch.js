@@ -68,10 +68,12 @@ function draw() {
     for (let j = 0; j < rows; j++) {
       // Calculate the interpolation factor based on the position in the grid
       let interpFactor = map(j, 0, rows - 1, 0, 1);
+      // Applies a cubic function to create a faster transition between colours
+      interpFactor = pow(interpFactor, 3)
       // Interpolate between brown and nude using the interpolation factor
-      let r = lerp(153, 255, interpFactor);
-      let g = lerp(76, 255, interpFactor);
-      let b = lerp(0, 204, interpFactor);
+      let r = lerp(30, 60, interpFactor);
+      let g = lerp(50, 70, interpFactor);
+      let b = lerp(40, 130, interpFactor);
       let sandColor = color(r, g, b);
 
       noStroke();
