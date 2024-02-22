@@ -2,32 +2,11 @@ canvas {
   display: block;
 }
 
-body {
+html, body {
+  margin: 10px, 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #fbfbfb;
 }
-
-/* body {
-  margin: 10px, 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
-#canvas-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px, 0;
-  padding: 0;
-}
-
-p {
-  text-align: center;
-  font-size: 18px;
-}
-
-h1 {
-  text-align: center;
-  font-size: 36px;
-} 
