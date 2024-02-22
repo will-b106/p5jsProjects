@@ -18,6 +18,10 @@ let hueValue = 200;
 let gravity = 0.1;
 const totalPixels = 900 * 800;
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 function withinCols(i) {
   return i >= 0 && i <= cols - 1;
 }
@@ -47,7 +51,7 @@ function draw() {
     let extent = floor(matrix / 2);
     for (let i = -extent; i <= extent; i++) {
       for (let j = -extent; j <= extent; j++) {
-        if (random(1) < 0.75) {
+        if (getRandomInt(2) < 0.75) { // randomly generate sand pixels
           let col = mouseCol + i;
           let row = mouseRow + j;
           // stop from overwriting previous coloured pixels
