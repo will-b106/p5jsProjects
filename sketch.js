@@ -85,6 +85,7 @@ function draw() {
       let b = lerp(40, 130, interpFactor);
       let sandColor = color(r, g, b); // creates the sand color
 
+
       noStroke();
       if (grid[i][j] > 0) {
         fill(sandColor); // creates sand piece
